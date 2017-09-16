@@ -11,7 +11,6 @@ class IdeasController < ApplicationController
   # GET /ideas/1.json
   def show
    @comments = @idea.comments.order(like_count: :desc).all
-@comment = @idea.comments.build
   end
 
   # GET /ideas/new
@@ -33,7 +32,7 @@ class IdeasController < ApplicationController
         format.html { redirect_to @idea, notice: 'Idea was successfully created.' }
         format.json { render :show, status: :created, location: @idea }
       else
-        format.html { render :new }
+        format.html { render :template => "ideas/show" }
         format.json { render json: @idea.errors, status: :unprocessable_entity }
       end
     end
